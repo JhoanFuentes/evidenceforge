@@ -1,10 +1,14 @@
 # Presentar EvidenceForge con evidencia
 
-EvidenceForge demuestra decisiones de AI Engineering mediante un experimento auditable: mismo corpus, mismas consultas, tres métodos y resultados por consulta. El trabajo local incluye recuperación con inferencia real de embeddings; no implica que se hayan evaluado respuestas generativas live. El repositorio está preparado para publicarse, pero su creación local no significa que ya exista en GitHub. Los workflows de CI están preparados; su ejecución remota debe comprobarse después de subirlo.
+EvidenceForge demuestra decisiones de AI Engineering mediante un experimento auditable: mismo corpus, mismas consultas, tres métodos y resultados por consulta. Es un proyecto personal desarrollado con asistencia de IA. El trabajo local incluye recuperación con inferencia real de embeddings; no implica que se hayan evaluado respuestas generativas live.
+
+[Repositorio](https://github.com/JhoanFuentes/evidenceforge) · [Reporte interactivo](https://jhoanfuentes.github.io/evidenceforge/) · [Estado de CI](https://github.com/JhoanFuentes/evidenceforge/actions/workflows/ci.yml) · [Guía de revisión técnica](REVIEW_GUIDE.md)
+
+La validación local registra 105 pruebas aprobadas con el extra dense. Para hablar de CI, consulta la ejecución remota del commit correspondiente; una prueba local y un workflow alojado son evidencias distintas.
 
 ## Cómo complementa HarnessLab
 
-HarnessLab estudia contratos del runtime: persistencia, recuperación, presupuestos y aprobaciones ante decisiones controladas. EvidenceForge estudia calidad de recuperación con datos públicos y un modelo local. Juntos permiten explicar dos preguntas diferentes: **¿el sistema conserva sus garantías?** y **¿recupera evidencia útil?** Ninguno establece por sí solo que una respuesta sea verdadera o que el sistema esté listo para producción.
+[HarnessLab](https://github.com/JhoanFuentes/harnesslab) estudia contratos del runtime: persistencia, recuperación, presupuestos y aprobaciones ante decisiones controladas. EvidenceForge estudia calidad de recuperación con datos públicos y un modelo local. Juntos permiten explicar dos preguntas diferentes: **¿el sistema conserva sus garantías?** y **¿recupera evidencia útil?** Ninguno establece por sí solo que una respuesta sea verdadera o que el sistema esté listo para producción.
 
 ## Demo de tres minutos
 
@@ -28,7 +32,13 @@ Usa los comandos del [README](../README.md). Si muestras una captura, conserva t
 
 Añade mejoras porcentuales únicamente cuando el reporte las sustente. No conviertas tests locales en “CI aprobado”, recuperación en “precisión de respuestas”, ni un proyecto personal en experiencia productiva con clientes.
 
-Resultado ya medido para explicar: dense obtuvo nDCG@10 **0,7127** frente a **0,6634** de BM25; diferencia **+0,0493**, intervalo bootstrap pareado del 95% **[+0,0128; +0,0850]**. RRF obtuvo **0,7021**, con más latencia y sin mejora concluyente frente a dense en esta métrica. Presenta también sus regresiones: dense empeoró frente a BM25 en 52 de las 300 consultas. Estas cifras describen recuperación en este benchmark público, no exactitud de respuestas generadas ni resultados de negocio.
+Resultado ya medido para explicar: dense obtuvo nDCG@10 **0,7127** frente a **0,6634** de BM25; diferencia **+0,0493**, intervalo bootstrap pareado del 95% **[+0,0128; +0,0850]**. RRF obtuvo **0,7021**; su diferencia frente a dense fue **−0,0106**, con intervalo **[−0,0377; +0,0164]**, que cruza cero. RRF sí tuvo el mayor Recall@5 (**0,7712**). La decisión depende del objetivo de recuperación y del presupuesto de latencia: no corresponde declarar a un método superior en todos los criterios. Presenta también sus regresiones: dense empeoró frente a BM25 en 52 de las 300 consultas. Estas cifras describen recuperación en este benchmark público, no exactitud de respuestas generadas ni resultados de negocio.
+
+Una entrada concisa y verificable para CV, como proyecto personal:
+
+> **EvidenceForge — evaluación reproducible de recuperación de evidencia.** Proyecto desarrollado con asistencia de IA: comparación de BM25, embeddings BGE locales y RRF sobre 5.183 documentos y 300 consultas. Artefactos auditables con rankings por consulta, intervalos bootstrap pareados, mediciones de latencia y controles de integridad de citas. Validación local: 105 pruebas automatizadas aprobadas con el extra dense.
+
+En entrevista, concreta qué decisiones revisaste personalmente, qué parte extendiste y qué experimento puedes reproducir. El objetivo Senior AI Engineer / Applied AI no convierte este proyecto en experiencia laboral de esa senioridad.
 
 ## Cuatro semanas de aprendizaje
 
@@ -43,6 +53,6 @@ Multi-hop retrieval, pruebas contrafactuales de grounding, contextual retrieval 
 
 ## Borrador opcional para LinkedIn
 
-> Estoy trabajando en EvidenceForge, un laboratorio de recuperación de evidencia científica con BM25, embeddings locales y fusión de rankings. Me interesaba separar un resultado convincente de uno verificable: conservar configuración, inspeccionar cada consulta y comparar métodos sin ajustar parámetros sobre test. Una distinción clave es que recuperar evidencia relevante no significa confirmar una afirmación; un documento puede contradecirla. También separé integridad de citas y soporte semántico. El siguiente paso es publicar el código, los artefactos y una explicación de los casos donde cada método falla. Mi contribución específica fue [trabajo propio], y el hallazgo que cambió una decisión fue [hallazgo observado].
+> EvidenceForge es mi proyecto personal, desarrollado con asistencia de IA, para comparar recuperación de evidencia científica con BM25, embeddings locales y fusión de rankings. En una corrida CPU sobre 5.183 documentos y 300 consultas, dense obtuvo nDCG@10 de 0,7127 frente a 0,6634 de BM25. La fusión RRF no mostró una mejora concluyente sobre dense en esa métrica, aunque consiguió el mayor Recall@5. El resultado útil es la decisión que permiten tomar esos datos: explicitar la métrica objetivo, inspeccionar regresiones y considerar latencia antes de añadir complejidad. El repositorio conserva configuraciones, rankings e intervalos pareados para auditar el experimento. También distingue recuperación relevante, integridad de citas y soporte semántico: una cita literal no demuestra que una respuesta sea verdadera. Código y reporte: https://github.com/JhoanFuentes/evidenceforge
 
-Reemplaza los campos antes de publicar. El valor del portafolio está en poder defender decisiones y fallas con datos, sin prometer un resultado laboral.
+Adapta la voz del borrador a tu experiencia y comprensión real antes de publicarlo. El valor del portafolio está en poder defender decisiones y fallas con datos, sin prometer un resultado laboral.

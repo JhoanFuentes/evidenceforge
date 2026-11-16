@@ -1,8 +1,14 @@
 # EvidenceForge
 
+[![CI](https://github.com/JhoanFuentes/evidenceforge/actions/workflows/ci.yml/badge.svg)](https://github.com/JhoanFuentes/evidenceforge/actions/workflows/ci.yml)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-3776AB?logo=python&logoColor=white)](pyproject.toml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 **Measure retrieval. Inspect failures. Keep citation integrity separate from answer quality.**
 
-An Applied AI engineering portfolio project by **Jhoan Fuentes**, built with AI-assisted development. EvidenceForge compares lexical retrieval, real local embeddings, and rank fusion on a public scientific-evidence benchmark. It preserves the configuration, model/data hashes, rankings, per-query scores, and paired uncertainty intervals needed to audit the result.
+EvidenceForge compares lexical retrieval, real local embeddings, and rank fusion on a public scientific-evidence benchmark. It preserves the configuration, model/data hashes, rankings, per-query scores, and paired uncertainty intervals needed to audit the result. A personal Applied AI engineering project by **Jhoan Fuentes**, developed with AI assistance.
+
+[**Explore the interactive report**](https://jhoanfuentes.github.io/evidenceforge/) · [Repository](https://github.com/JhoanFuentes/evidenceforge) · [Technical review guide](docs/REVIEW_GUIDE.md) · [Guía de portafolio en español](docs/PORTFOLIO_ES.md)
 
 The central question: **does a more complex retriever actually earn its latency and operational cost?**
 
@@ -22,16 +28,18 @@ Dense minus BM25: **+0.0493 nDCG@10**, paired 95% bootstrap interval **[+0.0128,
 
 For a prototype prioritizing nDCG@10, these measurements support starting with dense retrieval and retaining BM25 as a cheap baseline. A different domain or operating point needs its own experiment. Intervals are conditional on these public queries and are not adjusted for multiple comparisons.
 
-Corpus encoding took **743.85 seconds** on this machine; setup took 749.69 seconds. Query latency includes fresh query encoding for dense and serial component work for RRF, excluding setup. These are local measurements, not service SLOs. See the [interactive report](examples/scifact-v1/report.html) and [two inspectable cases](docs/CASE_STUDY.md).
+Corpus encoding took **743.85 seconds** on this machine; setup took 749.69 seconds. Query latency includes fresh query encoding for dense and serial component work for RRF, excluding setup. These are local measurements, not service SLOs. See the [published interactive report](https://jhoanfuentes.github.io/evidenceforge/), its [standalone HTML artifact](examples/scifact-v1/report.html), and [two inspectable cases](docs/CASE_STUDY.md).
 
 ## Review in 60 seconds
 
-1. Open [the measured experiment](examples/scifact-v1/report.html) in a browser; the HTML is standalone and has per-query comparisons.
+1. Open [the measured experiment](https://jhoanfuentes.github.io/evidenceforge/) in a browser and inspect the per-query comparisons. The [same report is included as standalone HTML](examples/scifact-v1/report.html).
 2. Inspect [raw results](examples/scifact-v1/results.json): 5,183 documents, 300 queries, three systems, actual CPU model inference.
 3. Run `python -m evidenceforge verify examples/scifact-v1/results.json` to recompute scores and bootstrap intervals from rankings and judgments, without downloading a model.
 4. Run the offline demo below. A fabricated quote fails; an unsupported conclusion with a real quote **passes quote integrity**. That is an intentional demonstration of the validator's boundary.
 
 This is a measured local research/engineering project. It is not a deployed production service, a SOTA claim, a claim-verification system, or a clinical tool. No live generative-model evaluation was executed for the included release.
+
+For a deeper review, the [technical guide](docs/REVIEW_GUIDE.md) maps each engineering decision to its evidence and remaining limitation. Local validation recorded **105 passing tests** with the dense extra. The CI badge links to the current hosted workflow status; local test results and hosted checks are separate evidence.
 
 ## Quickstart — no key, no model download
 
@@ -140,9 +148,14 @@ Judgments enter the evaluator, not the retrievers. Dense index reuse checks docu
 
 It does **not** establish production scale, enterprise deployment experience, business ROI, or a measured improvement in LLM factuality. Public benchmark contamination is unknown. BEIR's `test` here is the original SciFact **public dev** partition, not its hidden test. Relevant abstracts may support or contradict a claim. Do not extrapolate to other domains without another experiment.
 
+## Two complementary engineering questions
+
+[**HarnessLab**](https://github.com/JhoanFuentes/harnesslab) examines whether an agent runtime preserves its contracts during failures, interruptions and approval workflows. **EvidenceForge** examines whether a retriever finds useful evidence, using actual local model inference and inspectable per-query results. Together they make execution reliability and empirical retrieval quality independently reviewable. Neither result establishes the truth of a generated answer.
+
 ## Project map and reading path
 
 - [Experiment protocol](docs/EXPERIMENT.md): hypotheses, split discipline, metrics, timing, limitations.
+- [Technical review guide](docs/REVIEW_GUIDE.md): decisions, evidence and questions for an engineering review.
 - [Data and model provenance](docs/DATA_AND_MODELS.md): download, upstream licenses, attribution, actual weights.
 - [Spanish interview guide](docs/INTERVIEW_GUIDE_ES.md): defend design decisions and explain what the evidence establishes.
 - [Portfolio notes](docs/PORTFOLIO_ES.md): concise CV wording and walkthrough.
@@ -154,8 +167,8 @@ It does **not** establish production scale, enterprise deployment experience, bu
 
 Next experiments: cross-encoder reranking, a second domain, human-reviewed answer evaluation, and counterfactual evidence removal/swaps. These are extensions, not implemented release claims.
 
-Local validation: **105 unit tests passed** with the dense extra on Windows/Python 3.12. A minimal installation passed 96 and explicitly skipped 9 NumPy-dependent tests. The included metrics, bootstrap intervals and scientific source hashes were verified independently of model inference. The report was checked in desktop/mobile layouts, including its query and regression filters. GitHub Actions are prepared but have not been executed remotely for this local release.
+Local validation: **105 unit tests passed** with the dense extra on Windows/Python 3.12. A minimal installation passed 96 and explicitly skipped 9 NumPy-dependent tests. The included metrics, bootstrap intervals and scientific source hashes were verified independently of model inference. The report was checked in desktop/mobile layouts, including its query and regression filters. Hosted validation is recorded in [GitHub Actions](https://github.com/JhoanFuentes/evidenceforge/actions/workflows/ci.yml); inspect the run associated with the commit under review.
 
 ## License and attribution
 
-Project code is MIT. **The dataset and model are not relicensed by this repository.** SciFact/BEIR licensing and attribution are documented [separately](docs/DATA_AND_MODELS.md). The included relevance judgments originate from SciFact via BEIR; scores and ranked IDs are generated by EvidenceForge. Original abstracts, query text, and model weights are not redistributed in the portable release. HarnessLab and EvidenceForge complement each other: durable agent execution in the former, empirical retrieval and evidence boundaries here.
+Project code is MIT. **The dataset and model are not relicensed by this repository.** SciFact/BEIR licensing and attribution are documented [separately](docs/DATA_AND_MODELS.md). The included relevance judgments originate from SciFact via BEIR; scores and ranked IDs are generated by EvidenceForge. Original abstracts, query text, and model weights are not redistributed in the portable release.

@@ -3,6 +3,10 @@
 Initial local portfolio release, 2026-11-16. Developed with AI assistance; the
 author should be able to explain and reproduce each claimed capability.
 
+[Repository](https://github.com/JhoanFuentes/evidenceforge) ·
+[Interactive report](https://jhoanfuentes.github.io/evidenceforge/) ·
+[Hosted CI runs](https://github.com/JhoanFuentes/evidenceforge/actions/workflows/ci.yml)
+
 ## Included
 
 - Three retrieval systems: explicit BM25 baseline, pinned BGE ONNX embeddings with
@@ -12,8 +16,22 @@ author should be able to explain and reproduce each claimed capability.
   paired bootstrap intervals, timings and an interactive local report.
 - Citation integrity checks, an authored offline boundary demo, and an optional
   one-call Responses API adapter with sanitized failure artifacts.
-- Network-free unit tests and GitHub Actions definitions. Remote Actions have
-  not been executed for this local release.
+- Network-free unit tests and GitHub Actions definitions. At the initial local
+  release checkpoint, remote Actions had not yet been executed. Subsequent
+  hosted validation is recorded in the CI run history linked above.
+
+## Presentation for technical review
+
+The repository presents the measured result, a hosted static report, and a
+[review guide](REVIEW_GUIDE.md) that connects design decisions to inspectable
+evidence. The CI badge reflects the current workflow status; it is separate from
+the historical local record of 105 passing tests with the dense extra. Scientific
+artifacts and the original experiment's provenance remain unchanged by these
+presentation edits.
+
+[HarnessLab](https://github.com/JhoanFuentes/harnesslab) is the complementary
+project for durable agent execution and runtime contracts. EvidenceForge's
+contribution is the empirical retrieval comparison and explicit evidence boundary.
 
 ## Reproducibility scope
 

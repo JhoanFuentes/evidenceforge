@@ -13,6 +13,12 @@ authors = [{name = "Jhoan Fuentes"}]
 dependencies = []
 keywords = ["retrieval", "rag", "evaluation", "applied-ai", "embeddings"]
 
+[project.urls]
+Repository = "https://github.com/JhoanFuentes/evidenceforge"
+Documentation = "https://github.com/JhoanFuentes/evidenceforge#readme"
+Report = "https://jhoanfuentes.github.io/evidenceforge/"
+Issues = "https://github.com/JhoanFuentes/evidenceforge/issues"
+
 [project.optional-dependencies]
 dense = ["fastembed==0.9.1", "numpy==2.5.5"]
 dev = ["ruff==0.17.5"]
@@ -25,7 +31,7 @@ evidenceforge = "evidenceforge.cli:main"
 where = ["src"]
 
 [tool.ruff]
-target-version = "py311"
+target-version = "py312"
 line-length = 100
 
 [tool.ruff.lint]
