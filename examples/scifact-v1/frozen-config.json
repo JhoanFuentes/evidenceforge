@@ -1,0 +1,40 @@
+{
+  "config": {
+    "name": "scifact-v1-prespecified",
+    "split": "test",
+    "systems": [
+      "bm25",
+      "dense",
+      "rrf"
+    ],
+    "bm25_k1": 1.2,
+    "bm25_b": 0.75,
+    "candidates": 100,
+    "rrf_constant": 60,
+    "query_prefix": "Represent this sentence for searching relevant passages: ",
+    "model_name": "BAAI/bge-small-en-v1.5",
+    "model_repository": "Qdrant/bge-small-en-v1.5-onnx-Q",
+    "model_revision": "aa8f8b060edb00e03bfdd08813a2949946c8ba55",
+    "threads": 4,
+    "batch_size": 1,
+    "bootstrap_samples": 2000,
+    "seed": 42,
+    "tuning": "No retrieval-quality tuning. CPU batch size selected on 16 unlabeled documents before evaluating test queries."
+  },
+  "sha256": "600d92d04a9ecf09aa3427ba69c5ebe1357a47094c7d1321ca3e8815bc0d63c5",
+  "frozen_at": "2026-11-16T05:28:31.352457+00:00",
+  "source_files": {
+    "__init__.py": "14008874cd434ce0692b18465adce7c717b4c2a1c38555f3f5034abd2f4b01fd",
+    "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "cli.py": "050325397e0b1a0c456185f3284550033f42b77c5606fcf9cebd34819e04fa7e",
+    "dataset.py": "66ac4010fc22b141d28b997e0c67018684e0a1f2fa8dabeb35d1559bd48d2c92",
+    "embeddings.py": "bfb9e279a9cd6380fb715fb4a32f73f57445d2a1b33777da0ef1fc136e6eabc8",
+    "evaluation.py": "628abb856d6385519468d5ee28953f50f64408595c9b5ae1ba296499ac1849eb",
+    "evidence.py": "5ec4ae8ce2cec8dd14318ec4ae7e8807d51602649011af7cb3f2cf5ea37ba2ac",
+    "experiment.py": "efceaba556dd1eb66937a16fcac42f6019646b6d031fa5aa7c4d6f95501ad568",
+    "io.py": "c4db5d4e8a98f1226c46f5f5359603bc7ad6caca204aa2e3cec4899d6bd7aba7",
+    "providers.py": "bd604540b6950f388ffb8c6eea2858e48b613e1f8fcb0e58c9c26f51e46fd659",
+    "report.py": "1d60e1f9d3526c97c97c978d71b20740f86ea6909e59629a0b9adb36a15563d0",
+    "retrieval.py": "1ec18ce09aa5dc424d9722d669e3cbf8addbfbe32cb901d27a22e0132fbdc57d"
+  }
+}

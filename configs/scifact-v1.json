@@ -1,0 +1,18 @@
+{
+  "name": "scifact-v1-prespecified",
+  "split": "test",
+  "systems": ["bm25", "dense", "rrf"],
+  "bm25_k1": 1.2,
+  "bm25_b": 0.75,
+  "candidates": 100,
+  "rrf_constant": 60,
+  "query_prefix": "Represent this sentence for searching relevant passages: ",
+  "model_name": "BAAI/bge-small-en-v1.5",
+  "model_repository": "Qdrant/bge-small-en-v1.5-onnx-Q",
+  "model_revision": "aa8f8b060edb00e03bfdd08813a2949946c8ba55",
+  "threads": 4,
+  "batch_size": 1,
+  "bootstrap_samples": 2000,
+  "seed": 42,
+  "tuning": "No retrieval-quality tuning. CPU batch size selected on 16 unlabeled documents before evaluating test queries."
+}
